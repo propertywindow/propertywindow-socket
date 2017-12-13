@@ -12,6 +12,7 @@
 <p id="stat"><strong>Status:</strong> Not Connected</p>
 <script>
     const socket = io.connect(window.location.host);
+    console.log(window.location.host);
     socket.on("start_server",function(){
         $("#stat").html("<strong>Status:</strong> Connected");
     });
