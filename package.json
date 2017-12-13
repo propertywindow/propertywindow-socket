@@ -6,13 +6,15 @@
   "description": "websocket for propertywindow",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "forever start server.js",
+    "stop": "forever stopall"
   },
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "forever": "^0.15.3",
     "fs": "0.0.1-security",
     "helmet": "^3.9.0",
     "http": "0.0.0",
