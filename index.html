@@ -5,8 +5,16 @@
     <title>Property Window</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-<p>Node Server Routing Is Working.</p>
+<p id="stat"><strong>Status:</strong> Not Connected</p>
+<script>
+    const socket = io.connect(window.location.host);
+    socket.on("start_server",function(){
+        $("#stat").html("<strong>Status:</strong> Connected");
+    });
+</script>
 </body>
 </html>

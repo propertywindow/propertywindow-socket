@@ -50,6 +50,11 @@ io.on('connection', (socket) => {
     });
 });
 
+
+io.sockets.on("connection",function(socket){
+    socket.emit("start_server");
+})
+
 io.sockets.on("disconnect",function(socket){
     console.log('user disconnected (2)');
 });
