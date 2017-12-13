@@ -8,6 +8,7 @@ const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
 const app = express();
+const port = 8000;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -27,8 +28,7 @@ app.use(function (req, res, next) {
 //     rejectUnauthorized: false
 // };
 
-const server = app.listen(8000);
-const io = require('socket.io').listen(server, {
+const io = require('socket.io').listen(app.listen(port), {
     log: false,
     agent: false,
     origins: '*:*',
@@ -49,6 +49,17 @@ io.on('connection', (socket) => {
         console.log('user disconnected');
     });
 });
+
+io.sockets.on("disconnect",function(socket){
+    console.log('user disconnected (2)');
+});
+
+// io.sockets.emit("EVENT_NAME",EVENT_DATA);
+// //EVENT_DATA Can Be Anything That Is To Be Sent To The Server
+
+// io.sockets.on("EVENT_NAME",function(data){
+// //data = EVENT_DATA Passed From The emit Method
+// })
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
