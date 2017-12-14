@@ -16,9 +16,18 @@ pipeline {
                 sh 'npm install'
             }
         }
+        stage('Deploy') {
+                    steps {
+                        echo 'Deploying...'
+                        sh 'ssh root@propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
+                        sh ‘scp -r ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl’
+                    }
+                }
         stage('Start') {
             steps {
                 echo 'Staring...'
+                sh 'cd /var/www/socket.propertywindow.nl'
+                sh 'npm stop'
                 sh 'npm start'
             }
         }
