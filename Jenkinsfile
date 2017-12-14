@@ -20,7 +20,7 @@ pipeline {
                     steps {
                         echo 'Deploying...'
                         sh 'ssh root@propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
-                        sh 'scp -r ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
+                        sh 'rsync -vrzhe "ssh -o StrictHostKeyChecking=no" ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
                     }
                 }
         stage('Start') {
