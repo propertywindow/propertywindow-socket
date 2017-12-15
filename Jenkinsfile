@@ -19,7 +19,7 @@ pipeline {
         stage('Deploying: Deploy') {
                     steps {
                         echo 'Deploying...'
-                        sh 'eval `ssh-agent -s`'
+                        sh 'exec ssh-agent bash'
                         sh 'ssh-add -l'
                         sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl uname -a'
                         sh 'ssh -oStrictHostKeyChecking=no root@propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
