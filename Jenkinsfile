@@ -20,7 +20,7 @@ pipeline {
                     steps {
                         echo 'Deploying...'
                         sh 'rm -rf /var/www/socket.propertywindow.nl/*'
-                        sh 'mv ./ /var/www/socket.propertywindow.nl/'
+                        sh 'mv . /var/www/socket.propertywindow.nl'
                     }
                 }
         stage('Start') {
