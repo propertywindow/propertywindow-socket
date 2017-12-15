@@ -17,7 +17,7 @@ pipeline {
             }
         }
         stage('Deploying: Deploy') {
-            ssh-agent (credentials: ['deploy-dev']) {
+            ssh-agent (credentials: ['root']) {
                 sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl uname -a'
             }
             steps {
@@ -29,9 +29,9 @@ pipeline {
         stage('Deploying: Start') {
             steps {
                 echo 'Staring...'
-                sh 'ssh-agent cd /var/www/socket.propertywindow.nl'
-                sh 'ssh-agent npm stop'
-                sh 'ssh-agent npm start'
+                sh 'cd /var/www/socket.propertywindow.nl'
+                sh 'npm stop'
+                sh 'npm start'
             }
         }
     }
