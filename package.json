@@ -6,9 +6,8 @@
   "description": "websocket for propertywindow",
   "main": "server.js",
   "scripts": {
-    "start": "forever start server.js",
+    "start": "forever stopall && forever start server.js",
     "dev": "forever stopall && nodemon server.js",
-    "stop": "forever stopall"
   },
   "private": true,
   "dependencies": {
