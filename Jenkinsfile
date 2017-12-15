@@ -21,6 +21,8 @@ pipeline {
                         echo 'Deploying...'
                         sh 'pwd'
                         sh 'whoami'
+                        sh 'cd /var'
+                        sh 'ls -l'
                         sh 'ssh -i ~/.ssh/id_rsa root@propertywindow.nl cd /var/www/'
                         sh 'ls -l'
                         sh 'ssh -oStrictHostKeyChecking=no root@propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
