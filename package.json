@@ -7,7 +7,7 @@
   "main": "server.js",
   "scripts": {
     "start": "forever stopall && forever start server.js",
-    "dev": "forever stopall && nodemon server.js",
+    "dev": "forever stopall && nodemon server.js"
   },
   "private": true,
   "dependencies": {
