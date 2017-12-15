@@ -8,7 +8,7 @@ pipeline {
             args '-u root'
         },
         sshagent (credentials: ['deploy-dev']) {
-            sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow uname -a'
+            sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl uname -a'
         }
     }
 
