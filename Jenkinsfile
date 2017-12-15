@@ -7,7 +7,7 @@ pipeline {
             image 'node'
             args '-u root'
         }
-        sshagent (credentials: ['deploy-dev']) {
+        ssh-agent (credentials: ['deploy-dev']) {
             sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl uname -a'
         }
     }
@@ -22,16 +22,16 @@ pipeline {
         stage('Deploying: Deploy') {
             steps {
                 echo 'Deploying...'
-                sh 'sshagent rm -rf /var/www/socket.propertywindow.nl/*'
+                sh 'ssh-agent rm -rf /var/www/socket.propertywindow.nl/*'
                 sh 'rsync -vrzhe "ssh -o StrictHostKeyChecking=no" ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
             }
         }
         stage('Deploying: Start') {
             steps {
                 echo 'Staring...'
-                sh 'sshagent cd /var/www/socket.propertywindow.nl'
-                sh 'sshagent npm stop'
-                sh 'sshagent npm start'
+                sh 'ssh-agent cd /var/www/socket.propertywindow.nl'
+                sh 'ssh-agent npm stop'
+                sh 'ssh-agent npm start'
             }
         }
     }
