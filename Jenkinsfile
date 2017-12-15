@@ -7,9 +7,6 @@ pipeline {
             image 'node'
             args '-u root'
         }
-        ssh-agent (credentials: ['deploy-dev']) {
-            sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl uname -a'
-        }
     }
 
     stages {
@@ -20,6 +17,9 @@ pipeline {
             }
         }
         stage('Deploying: Deploy') {
+            ssh-agent (credentials: ['deploy-dev']) {
+                sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl uname -a'
+            }
             steps {
                 echo 'Deploying...'
                 sh 'ssh-agent rm -rf /var/www/socket.propertywindow.nl/*'
