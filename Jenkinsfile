@@ -23,7 +23,7 @@ pipeline {
                         sh 'whoami'
                         sh 'cd /var && ls -l'
                         sh 'ls -l'
-                        sh 'ssh -i ~/.ssh/id_rsa root@propertywindow.nl cd /var/www/'
+                        sh 'cd /var/www/ && ls -l'
                         sh 'ls -l'
                         sh 'ssh -oStrictHostKeyChecking=no root@propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
                         sh 'rsync -vrzhe "ssh -o StrictHostKeyChecking=no" ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
