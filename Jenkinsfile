@@ -21,16 +21,18 @@ pipeline {
                 echo 'Deploying...'
                 sshagent(['52488a7e-586a-4087-a6fc-4654e5420403']) {
                     sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
+                    sh 'scp -r ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
                 }
-                sh 'rsync -vrzhe "ssh -o StrictHostKeyChecking=no" ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
             }
         }
         stage('Deploying: Start') {
             steps {
                 echo 'Staring...'
-                sh 'cd /var/www/socket.propertywindow.nl'
-                sh 'npm stop'
-                sh 'npm start'
+                sshagent(['52488a7e-586a-4087-a6fc-4654e5420403']) {
+                    sh 'cd /var/www/socket.propertywindow.nl'
+                    sh 'npm stop'
+                    sh 'npm start'
+                }
             }
         }
     }
