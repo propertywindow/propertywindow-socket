@@ -19,7 +19,9 @@ pipeline {
         stage('Deploying: Deploy') {
             steps {
                 echo 'Deploying...'
-                sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
+                sshagent(['52488a7e-586a-4087-a6fc-4654e5420403']) {
+                    sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
+                }
                 sh 'rsync -vrzhe "ssh -o StrictHostKeyChecking=no" ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
             }
         }
