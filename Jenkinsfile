@@ -29,9 +29,9 @@ pipeline {
             steps {
                 echo 'Staring...'
                 sshagent(['52488a7e-586a-4087-a6fc-4654e5420403']) {
-                    sh 'cd /var/www/socket.propertywindow.nl'
-                    sh 'npm stop'
-                    sh 'npm start'
+                    sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl cd /var/www/socket.propertywindow.nl'
+                    sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl npm stop'
+                    sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl npm start'
                 }
             }
         }
