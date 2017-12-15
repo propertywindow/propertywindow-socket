@@ -19,7 +19,7 @@ pipeline {
         stage('Deploying: Deploy') {
                     steps {
                         echo 'Deploying...'
-                        sh 'cd /var/www/'
+                        sh 'ssh -oStrictHostKeyChecking=no root@propertywindow.nl cd /var/www/'
                         sh 'ls -l'
                         sh 'ssh -oStrictHostKeyChecking=no root@propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
                         sh 'rsync -vrzhe "ssh -o StrictHostKeyChecking=no" ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
