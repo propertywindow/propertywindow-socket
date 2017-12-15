@@ -9,10 +9,6 @@ pipeline {
         }
     }
 
-    ssh-agent (credentials: ['f6e8ec80-82e1-4d9c-962f-819cbecd0bcf']) {
-        sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl uname -a'
-    }
-
     stages {
         stage('Construction: Build') {
             steps {
@@ -23,6 +19,9 @@ pipeline {
         stage('Deploying: Deploy') {
             steps {
                 echo 'Deploying...'
+                ssh-agent (credentials: ['f6e8ec80-82e1-4d9c-962f-819cbecd0bcf']) {
+                    sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl uname -a'
+                }
                 sh 'ssh-agent rm -rf /var/www/socket.propertywindow.nl/*'
                 sh 'rsync -vrzhe "ssh -o StrictHostKeyChecking=no" ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
             }
