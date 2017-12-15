@@ -67,7 +67,7 @@ class Server{
             console.log('user connected');
 
             socket.on('add-message', (message) => {
-                io.emit('message', message);
+                this.io.emit('message', message);
             });
 
             socket.on('disconnect', function () {
