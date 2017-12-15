@@ -10,25 +10,25 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Building: Build') {
             steps {
                 echo 'Building...'
                 sh 'npm install'
             }
         }
-        stage('Deploy') {
+        stage('Deploying: Deploy') {
                     steps {
                         echo 'Deploying...'
-                        sh 'ssh root@propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
+                        sh 'ssh -oStrictHostKeyChecking=no root@propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
                         sh 'rsync -vrzhe "ssh -o StrictHostKeyChecking=no" ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
                     }
                 }
-        stage('Start') {
+        stage('Deploying: Start') {
             steps {
                 echo 'Staring...'
-                sh 'ssh root@propertywindow.nl cd /var/www/socket.propertywindow.nl'
-                sh 'ssh root@propertywindow.nl npm stop'
-                sh 'ssh root@propertywindow.nl npm start'
+                sh 'ssh -oStrictHostKeyChecking=no root@propertywindow.nl cd /var/www/socket.propertywindow.nl'
+                sh 'ssh -oStrictHostKeyChecking=no root@propertywindow.nl npm stop'
+                sh 'ssh -oStrictHostKeyChecking=no root@propertywindow.nl npm start'
             }
         }
     }
