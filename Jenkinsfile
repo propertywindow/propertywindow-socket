@@ -21,7 +21,7 @@ pipeline {
                         echo 'Deploying...'
                         sh 'pwd'
                         sh 'whoami'
-                        sh 'cd /var'
+                        sh 'cd /var && ls -l'
                         sh 'ls -l'
                         sh 'ssh -i ~/.ssh/id_rsa root@propertywindow.nl cd /var/www/'
                         sh 'ls -l'
