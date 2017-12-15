@@ -9,7 +9,7 @@ pipeline {
         }
     }
 
-    ssh-agent (credentials: ['root']) {
+    ssh-agent (credentials: ['f6e8ec80-82e1-4d9c-962f-819cbecd0bcf']) {
         sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl uname -a'
     }
 
