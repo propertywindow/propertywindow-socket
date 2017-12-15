@@ -19,8 +19,7 @@ pipeline {
         stage('Deploying: Deploy') {
                     steps {
                         echo 'Deploying...'
-                        sh 'locate id_rsa'
-                        sh 'ssh -oStrictHostKeyChecking=no root@propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
+                        sh 'ssh -u -oStrictHostKeyChecking=no root@propertywindow.nl rm -rf /var/www/socket.propertywindow.nl/*'
                         sh 'rsync -vrzhe "ssh -o StrictHostKeyChecking=no" ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
                     }
                 }
