@@ -19,16 +19,16 @@ pipeline {
         stage('Deploy') {
                     steps {
                         echo 'Deploying...'
-                        sh 'ssh root@propertywindow.nl `rm -rf /var/www/socket.propertywindow.nl/*`'
+                        sh 'ssh root@propertywindow.nl 'rm -rf /var/www/socket.propertywindow.nl/*''
                         sh 'scp -r ./ root@propertywindow.nl:/var/www/socket.propertywindow.nl'
                     }
                 }
         stage('Start') {
             steps {
                 echo 'Staring...'
-                sh 'ssh root@propertywindow.nl `cd /var/www/socket.propertywindow.nl`'
-                sh 'ssh root@propertywindow.nl `npm stop`'
-                sh 'ssh root@propertywindow.nl `npm start`'
+                sh 'ssh root@propertywindow.nl cd /var/www/socket.propertywindow.nl'
+                sh 'ssh root@propertywindow.nl npm stop'
+                sh 'ssh root@propertywindow.nl npm start'
             }
         }
     }
